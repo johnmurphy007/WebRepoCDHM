@@ -15,9 +15,9 @@ Capabilities include:
 - League table of users.
 - Users can browse the repo based on Artist, Object of interest and type.
 - Results are presented in alphabetical order and Pagination is used.
-- 
 
- * The Domain objects that that this program uses are:
+
+ The Domain objects that that this program uses are:
  * 		- ChObject
  * 		- Image
  * 		- Participation
@@ -26,7 +26,7 @@ Capabilities include:
  * 		- User
  * 		- Authorities
  
- * The Entity objects that this program uses are:
+ The Entity objects that this program uses are:
  * 		- Comment
  * 		- CommentFlag
  * 		- CommentThumb
@@ -37,4 +37,3 @@ Capabilities include:
  * 		- Gamification
  * 		- TagName
  * 		- Users
-
