@@ -12,12 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
- * This class implements the interface for AuthoritiesService.  
- * 
+ *
+ * This class implements the interface for AuthoritiesService.
+ *
  * This class passes directly through to the Repository layer.
- * 
+ *
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id
  *  save		Save a object/record to the repository
@@ -30,7 +29,7 @@ import org.springframework.stereotype.Service;
 //Identify this class as Service (Spring will detect it during @ComponentScan & create a bean of this type).
 @Service
 public class AuthoritiesServiceImpl implements AuthoritiesService {
-	
+
 	//instance variable that is updated via constructor DI
 	AuthoritiesRepository authoritiesRepository;
 
@@ -40,8 +39,8 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
 	{
 		this.authoritiesRepository = authoritiesRepository;
 	}
-	
-	
+
+
 	@Override
 	public Authorities get(String id) {
 		// TODO Gets an Authorities object based on an id

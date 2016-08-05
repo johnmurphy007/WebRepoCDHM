@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
- * This class implements the interface for RoleService.  
- * 
+ *
+ * This class implements the interface for RoleService.
+ *
  * This class passes directly through to the Repository layer.
- * 
+ *
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id
  *  save		Save a object/record to the repository
@@ -35,34 +34,34 @@ public class RolesServiceImpl implements RolesService {
 
 	//instance variable that is updated via constructor DI
 	private RolesRepository rolesRepository;
-	
+
 	//Autowire this object, using constructor DI.
 	@Autowired
 	public RolesServiceImpl (RolesRepository rolesRepository)
 	{
 		this.rolesRepository = rolesRepository;
 	}
-	
+
 	@Override
-	public Role get(String id) 
+	public Role get(String id)
 	{
 		return rolesRepository.get(id);
 	}
 
 	@Override
-	public void save(Role role) 
+	public void save(Role role)
 	{
 		rolesRepository.save(role);
 	}
 
 	@Override
-	public void remove(Role role) 
+	public void remove(Role role)
 	{
 		rolesRepository.remove(role);
 	}
 
 	@Override
-	public List<Role> findAll() 
+	public List<Role> findAll()
 	{
 		return rolesRepository.findAll();
 	}

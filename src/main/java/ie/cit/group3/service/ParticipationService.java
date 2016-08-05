@@ -10,8 +10,7 @@ import java.util.List;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+ *
  * This interface defines the contract/methods that a Participation can use at the Service Layer.
  * Activities are:
  * 	get			Retrieve record(s) that match a given id
@@ -21,16 +20,16 @@ import java.util.List;
  *  List<Participation> get(ChObject chObject);
  */
 public interface ParticipationService {
-	
+
 	public Participation get (String chObject_id, String participation_id, String role_id);
-	
+
 	public void save(Participation participation, String chObject_id);
-	
+
 	public void remove(Participation participation, String chObject_id);
-	
+
 	public List<Participation> findAll();
-	
+
 	public List<Participation> get(ChObject chObject);
-	
-	
+
+
 }

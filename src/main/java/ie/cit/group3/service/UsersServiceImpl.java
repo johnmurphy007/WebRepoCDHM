@@ -11,25 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
- * This class implements the interface for UsersRepository.  
- * 
+ *
+ * This class implements the interface for UsersRepository.
+ *
  * This class passes directly through to the Repository layer.
- * 
+ *
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id
  *  save		Save a object/record to the repository
  *  remove		Delete an object/record from the repository
  *  findAll		list all the objects/records in the repository
- * 
+ *
  */
 
 
 //Identify this class as Service (Spring will detect it during @ComponentScan & create a bean of this type).
 @Service
 public class UsersServiceImpl implements UsersService {
-	
+
 	//instance variable that is updated via constructor DI
 	UsersRepository usersRepository;
 
@@ -68,8 +67,8 @@ public class UsersServiceImpl implements UsersService {
 		// TODO Auto-generated method stub
 		return usersRepository.findAll();
 	}
-	
-	
-	
+
+
+
 
 }

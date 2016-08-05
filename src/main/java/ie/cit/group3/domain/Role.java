@@ -3,13 +3,13 @@ package ie.cit.group3.domain;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
+
  * Date: 	31st March 2015
- * 
+ *
  * This class is used to store attributes about a Role that relates to Cultural Heritage Objects.
  * Jackson automatically extracts the data from the Json file for the attributes listed below.
  * Each Role can have: role_id, role_name, role_display_date, role_url.
- * 
+ *
  */
 
 public class Role {
@@ -18,10 +18,10 @@ public class Role {
 	private String role_name;
 	private String role_display_name;
 	private String role_url;
-	
-	
-	
-	
+
+
+
+
 	public Role() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -33,7 +33,7 @@ public class Role {
 				+ ", role_display_name=" + role_display_name + ", role_url="
 				+ role_url + "]";
 	}
-	
+
 	public String getRole_id() {
 		return role_id;
 	}

@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
- * This class implements the interface for ImageService.  
- * 
+ *
+ * This class implements the interface for ImageService.
+ *
  * This class passes directly through to the Repository layer.
- * 
+ *
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id & resolution
  *  save		Save a object/record to the repository
@@ -22,13 +21,13 @@ import java.util.List;
  *  findAll		list all the objects/records in the repository
  *  List<Image> find(String searchcriteria)
  *  List<Image> findByImageId(String searchcriteria)
-	long countByImageId(String searchcriteria) 
+	long countByImageId(String searchcriteria)
  */
 
 //Identify this class as Service (Spring will detect it during @ComponentScan & create a bean of this type).
 @Service
 public class ImageServiceImpl implements ImageService {
-	
+
 	//instance variable that is updated via constructor DI
 	ImageRepository imageRepository;
 
@@ -38,27 +37,27 @@ public class ImageServiceImpl implements ImageService {
 	{
 		this.imageRepository = imageRepository;
 	}
-		
+
 	@Override
-	public Image get(String id, String resolution) 
-	{	
+	public Image get(String id, String resolution)
+	{
 		return imageRepository.get(id,  resolution);
 	}
 
 	@Override
-	public void save(Image image) 
+	public void save(Image image)
 	{
-		imageRepository.save(image);	
+		imageRepository.save(image);
 	}
 
 	@Override
-	public void remove(Image image) 
+	public void remove(Image image)
 	{
 		imageRepository.remove(image);
 	}
 
 	@Override
-	public List<Image> findAll() 
+	public List<Image> findAll()
 	{
 		return imageRepository.findAll();
 	}

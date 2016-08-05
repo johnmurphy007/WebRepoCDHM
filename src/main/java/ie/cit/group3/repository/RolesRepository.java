@@ -7,8 +7,7 @@ import java.util.List;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+ *
  * This interface defines the contract/methods that a Role can use on a Repository.
  * Activities are:
  * 	get			Retrieve record(s) that match a given id
@@ -23,13 +22,13 @@ import java.util.List;
  */
 
 public interface RolesRepository {
-	
+
 	public Role get (String id);
-	
+
 	public void save(Role role);
-	
+
 	public void remove(Role role);
-	
+
 	public List<Role> findAll();
 
 	public int CountRole();
@@ -37,8 +36,8 @@ public interface RolesRepository {
 	public List<Role> findByRoleId(String ro);
 
 	public Page<Role> findAll(int pageNo, int pageSize);
-	
+
 	public long countByRoleId(String id);
-	
+
 	public int CountAll();
 }

@@ -2,8 +2,7 @@ package ie.cit.group3.service;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+ *
  * This interface defines the contract/methods that an Authorities object can use at the Service Layer.
  * Activities are:
  * 	get			Retrieve record(s) that match a given id
@@ -19,15 +18,15 @@ import ie.cit.group3.domain.Authorities;
 import java.util.List;
 
 public interface AuthoritiesService {
-		
+
 		public Authorities get (String id);
-		
+
 		public void save(Authorities authority);
-		
+
 		public void remove(Authorities authority);
-		
+
 		public List<Authorities> findAll();
-		
+
 		public List<Authorities> findDistinctAuthorities();
 
 	}

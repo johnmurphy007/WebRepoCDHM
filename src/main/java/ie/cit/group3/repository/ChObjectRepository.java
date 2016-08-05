@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+
+ *
  * This interface defines the contract/methods that a ChObject can use on a Repository.
  * Activities are:
  * 	get			Retrieve record(s) that match a given id
@@ -24,18 +24,18 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ChObjectRepository {
-	
+
 	public ChObject get (String id);
-	
+
 	public void save(ChObject chobject);
-	
+
 	public void remove(ChObject chobject);
-	
+
 	public List<ChObject> findAll();
 
 	public Page<ChObject> findAll(int pageNo, int pageSize);
-	
+
 	public int CountAll();
-	
+
 	public int CountAllMedium();
 }

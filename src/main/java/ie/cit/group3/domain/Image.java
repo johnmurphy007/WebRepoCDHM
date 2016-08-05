@@ -3,9 +3,9 @@ package ie.cit.group3.domain;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
+
  * Date: 	31st March 2015
- * 
+ *
  * This class is used to store image attributes of interest from the Cultural Heritage Objects JSON files.
  * Jackson automatically extracts the data from the Json file into a Map<key,value> format for this object to use.
  * The "value" attributes are:
@@ -17,7 +17,7 @@ package ie.cit.group3.domain;
  */
 
 public class Image{
-	
+
 	private String url;
 	private int width;
 	private int height;
@@ -25,14 +25,14 @@ public class Image{
 	private String image_id;
 	private String resolution;
 	private String chObjectId;
-	
-	
-	
+
+
+
 	public Image() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 
 	@Override
 	public String toString() {

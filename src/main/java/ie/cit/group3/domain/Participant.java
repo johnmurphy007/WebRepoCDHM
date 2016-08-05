@@ -4,13 +4,13 @@ package ie.cit.group3.domain;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
+
  * Date: 	31st March 2015
- * 
+ *
  * This class is used to store attributes about Participants that have associations with Cultural Heritage Objects.
  * Jackson automatically extracts the data from the Json file for the attributes listed below.
  * Each Participant can have: person_id, person_name, person_date, person_url.
- * 
+ *
  */
 public class Participant {
 
@@ -19,7 +19,7 @@ public class Participant {
 	private String person_name;
 	private String person_date;
 	private String person_url;
-	
+
 	public Participant() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -54,7 +54,7 @@ public class Participant {
 	public void setPerson_url(String person_url) {
 		this.person_url = person_url;
 	}
-	
-	
-	
+
+
+
 }

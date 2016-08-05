@@ -4,23 +4,23 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
+
  * Date: 	31st March 2015
- * 
+ *
  * This class is used to capture the Participation associated with a Cultural Heritage Object.
- * 
+ *
  * @JsonUnwrapped does the parsing of Participation data from the Json file into the 'Participant' and 'Role' objects
  */
 
 
 public class Participation {
-	
+
 	@JsonUnwrapped
 	private Participant participant;
 	@JsonUnwrapped
 	private Role role;
 
-	
+
 	public Participation() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,8 +30,8 @@ public class Participation {
 	public String toString() {
 		return "Participation [participant=" + participant + ", role=" + role
 				+ "]";
-	}	
-	
+	}
+
 	public Participant getParticipant() {
 		return participant;
 	}
@@ -45,6 +45,6 @@ public class Participation {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
+
 
 }

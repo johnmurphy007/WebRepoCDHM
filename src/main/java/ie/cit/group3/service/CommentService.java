@@ -2,8 +2,7 @@ package ie.cit.group3.service;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+ *
  * This interface defines the contract/methods that a Comment object can use at the Service Layer.
  * Activities are:
  * 	List<Comment> findBychobject_idANDFlagFalse(String chobject_id);
@@ -12,7 +11,7 @@ package ie.cit.group3.service;
 	long countByCommenttextLike(String commenttext);
 	public Comment findOne(int id);
 	public void save(Comment comment);
- * 
+ *
  */
 
 import ie.cit.group3.entity.Comment;
@@ -26,9 +25,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface CommentService {
-		
-	
-	
+
+
+
 //	@Query(value="SELECT * FROM Comment WHERE chobject_id = :id AND flag = false", nativeQuery = true)
 //	public List<Comment> findBychobject_idANDFlagFalse(@Param("id") String id);
 	public List<Comment> findBychobject_idANDFlagFalse(String id);
@@ -37,9 +36,9 @@ public interface CommentService {
 //	public List<Comment> findBychobject_id(@Param("id") String id);
 	public List<Comment> findBychobject_id(String id);
 
-	
+
 	public Page<Comment> findByCommenttextLike(String commenttext, Pageable pageable);
-	
+
 	long countByCommenttextLike(String commenttext);
 
 	public Comment findOne(int id);

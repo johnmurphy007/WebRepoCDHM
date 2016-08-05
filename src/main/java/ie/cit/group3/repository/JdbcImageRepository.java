@@ -11,52 +11,51 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+ *
  * This class implements the interface for ImagesRepository
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id & image resolution
  *  save		Save a object/record to the repository
  *  remove		Delete an object/record from the repository
  *  findAll		list all the objects/records in the repository
- * 	List<Image> findByImageId(String id) 
+ * 	List<Image> findByImageId(String id)
  *	long countByImageId(String id) {
  */
 
 //Identify this class as Repository (Spring will detect it during @ComponentScan).
 @Repository
-public class JdbcImageRepository implements ImageRepository 
+public class JdbcImageRepository implements ImageRepository
 {
-	
+
 	//Using JdbcTemplate to provide repository access using SQL statements
 	private JdbcTemplate jdbcTemplate;
-	
+
 	//Using Constructor DI, auto-inject the DataBase dependency connection into this object.
 	@Autowired
-	public JdbcImageRepository(JdbcTemplate jdbcTemplate) 
+	public JdbcImageRepository(JdbcTemplate jdbcTemplate)
 	{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@Override
-	public Image get(String id, String resolution) 
+	public Image get(String id, String resolution)
 	{
 		/* This method retrieves an Image based on a supplied String based 'id' & 'resolution'.
-		 * 
+		 *
 		 * Need to check that the record exists in the database first before returning it.
 		 * Otherwise if the record does not exist, you will get an exception that the application
 		 * cannot handle.
 		 * Using a SQL COUNT statement to return the number of records.  This will return an integer
-		 * 'count'.  If this is 0, then no match exists and the return type of the object is set to 
+		 * 'count'.  If this is 0, then no match exists and the return type of the object is set to
 		 * null. If 'count' is >0, then run the SQL query to return the number of records that match
 		 * the supplied String 'id'.
-		 * 
+		 *
 		 * */
-		
+
 		String sql = "SELECT COUNT(*) FROM image WHERE image_id = ? AND image_res = ?";
 		@SuppressWarnings("deprecation")
 		int count = jdbcTemplate.queryForInt(sql, new Object [] {id, resolution});
-		
+
 		if (count > 0)
 		{
 			sql = "SELECT * FROM image WHERE image_id = ? AND image_res = ?;";
@@ -67,26 +66,26 @@ public class JdbcImageRepository implements ImageRepository
 		else
 			return null;
 	}
-	
+
 	@Override
-	public List<Image> find(String id) 
+	public List<Image> find(String id)
 	{
 		/* This method retrieves an Image based on a supplied String based 'id'.
-		 * 
+		 *
 		 * Need to check that the record exists in the database first before returning it.
 		 * Otherwise if the record does not exist, you will get an exception that the application
 		 * cannot handle.
 		 * Using a SQL COUNT statement to return the number of records.  This will return an integer
-		 * 'count'.  If this is 0, then no match exists and the return type of the object is set to 
+		 * 'count'.  If this is 0, then no match exists and the return type of the object is set to
 		 * null. If 'count' is >0, then run the SQL query to return the number of records that match
 		 * the supplied String 'id'.
-		 * 
+		 *
 		 * */
-		
+
 		String sql = "SELECT COUNT(*) FROM image WHERE chObject_id = ?";
 		@SuppressWarnings("deprecation")
 		int count = jdbcTemplate.queryForInt(sql, new Object [] {id});
-		
+
 		if (count > 0)
 		{
 			sql = "SELECT * FROM image WHERE chObject_id = ?;";
@@ -99,10 +98,10 @@ public class JdbcImageRepository implements ImageRepository
 
 
 	@Override
-	public void save(Image image) 
+	public void save(Image image)
 	{
 		//Implementing only the 'add()' part of 'save()' at present.
-		
+
 //		if (image.getImage_id() != null || image.getResolution() != null)
 //		{
 //			update(image);
@@ -116,12 +115,12 @@ public class JdbcImageRepository implements ImageRepository
 	private void add(Image image)
 	{
 		//Method to add a record to the repository
-		String sql = "INSERT INTO image (image_id,image_res,chObject_id,is_primary,height,width,url) VALUES (?,?,?,?,?,?,?);";	
+		String sql = "INSERT INTO image (image_id,image_res,chObject_id,is_primary,height,width,url) VALUES (?,?,?,?,?,?,?);";
 		jdbcTemplate.update(sql, new Object[] {
-				image.getImage_id(), image.getResolution(), image.getChObjectId(),image.getIs_primary(),image.getHeight(), image.getWidth(), image.getUrl()});		
+				image.getImage_id(), image.getResolution(), image.getChObjectId(),image.getIs_primary(),image.getHeight(), image.getWidth(), image.getUrl()});
 	}
 
-	
+
 	private void update(Image image)
 	{
 		//NOT IMPLEMENTED/TESTED
@@ -130,9 +129,9 @@ public class JdbcImageRepository implements ImageRepository
 		jdbcTemplate.update(sql, new Object[] {image.getChObjectId(), image.getHeight(), image.getIs_primary(),
 				image.getUrl(), image.getWidth(), image.getImage_id(), image.getResolution()});
 	}
-	
+
 	@Override
-	public void remove(Image image) 
+	public void remove(Image image)
 	{
 		//Method to delete a record from the repository
 		String sql = "DELETE FROM image WHERE image_id = ? AND image_res = ?";
@@ -140,17 +139,17 @@ public class JdbcImageRepository implements ImageRepository
 	}
 
 	@Override
-	public List<Image> findAll() 
+	public List<Image> findAll()
 	{
-		//Return a List of all Image(s) 
+		//Return a List of all Image(s)
 		String sql = "SELECT * FROM image";
 		return jdbcTemplate.query(sql,  new ImageRowMapper());
 	}
-	
+
 	@Override
-	public List<Image> findByImageId(String id) 
+	public List<Image> findByImageId(String id)
 	{
-		//Return a List of all Image(s) 
+		//Return a List of all Image(s)
 		String sql = "SELECT * FROM image WHERE image_id = ?";
 		return jdbcTemplate.query(sql,  new Object[] {id}, new ImageRowMapper());
 	}

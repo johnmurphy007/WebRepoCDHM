@@ -2,8 +2,7 @@ package ie.cit.group3.service;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+ *
  * This interface defines the contract/methods that a ChObject can use at the Service Layer.
  * Activities are:
  * 	List<Crowdsourcing> findBychobject_id(String id);
@@ -12,7 +11,7 @@ package ie.cit.group3.service;
 	long countByDescriptionLike(String description);
 	Crowdsourcing findOne(int id);
 	void save(Crowdsourcing crowdsourcing);
- * 
+ *
  */
 
 import ie.cit.group3.entity.Crowdsourcing;
@@ -24,7 +23,7 @@ import org.springframework.data.domain.Pageable;
 
 
 public interface CrowdsourcingService {
-		
+
 	//@Query(value="SELECT * FROM Crowdsourcing WHERE chobject_id = :id", nativeQuery = true)
 	//public List<Crowdsourcing> findBychobject_id(@Param("id") String id);
 	public List<Crowdsourcing> findBychobject_id(String id);
@@ -34,7 +33,7 @@ public interface CrowdsourcingService {
 	public List<Crowdsourcing> findBychobject_idANDflagFalse(String id);
 
 	public Page<Crowdsourcing> findByDescriptionLike(String description, Pageable pageable);
-	
+
 	long countByDescriptionLike(String description);
 
 	public Crowdsourcing findOne(int id);

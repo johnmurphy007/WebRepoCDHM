@@ -19,15 +19,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
+
+ *
  * This class is used to store attributes of interest from the Cultural Heritage Objects JSON files.
  * Jackson automatically extracts the data from the Json file for the attributes listed below.
  * Each object can have just one: id, title, date, medium, creditline, description, gallery_text
  * Each object may have several participations (captured in a List), and several Images (captured in a List
  * of Maps. Map<key,object>, where key is the image resolution and object is the images details).
- * 
- * Updated to annotate this class for Entity/JPA Access. 
+ *
+ * Updated to annotate this class for Entity/JPA Access.
  *
  */
 
@@ -38,33 +38,33 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="chobject") //name of table in database
 //@Component
 public class ChObject {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) //ensures that Auto Increment is compatible with underlying database AI implementation
 	private String id;
-	
+
 	private String title;
-	
+
 	private String date;
-	
+
 	private String medium;
-	
+
 	private String creditline;
-	
+
 	private String description;
 
-	private String gallery_text; 
-	
+	private String gallery_text;
+
 	@Transient
 	private List<Participation> participations;
-	
+
 	@Transient
 	private List<Map<String,Image>> images;
-	
+
 
 	public ChObject() {
 		super();
-		
+
 		this.participations = Collections.<Participation>emptyList();
 		this.images = Collections.<Map<String,Image>>emptyList();
 	}
@@ -174,12 +174,12 @@ public class ChObject {
 
 //	public void setImageList(List<Image> chimages) {
 //		// TODO Auto-generated method stub
-//		
+//
 //	}
 //	public List<Image> getImageList() {
 //		// TODO Auto-generated method stub
 //		return images;
-//		
+//
 //	}
 
 
@@ -193,6 +193,6 @@ public class ChObject {
 		this.images = images;
 	}
 
-	
-	
+
+
 }

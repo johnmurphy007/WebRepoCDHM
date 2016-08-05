@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
- * This class implements the interface for ParticipantService.  
- * 
+ *
+ * This class implements the interface for ParticipantService.
+ *
  * This class passes directly through to the Repository layer.
- * 
+ *
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id
  *  save		Save a object/record to the repository
@@ -35,34 +34,34 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 	//instance variable that is updated via constructor DI
 	ParticipantRepository participantRepository;
-	
-	//Autowire this object, using constructor DI.	
+
+	//Autowire this object, using constructor DI.
 	@Autowired
 	public ParticipantServiceImpl (ParticipantRepository participantRepository)
 	{
 		this.participantRepository = participantRepository;
 	}
-	
+
 	@Override
-	public Participant get(String id) 
+	public Participant get(String id)
 	{
 		return participantRepository.get(id);
 	}
 
 	@Override
-	public void save(Participant participant) 
+	public void save(Participant participant)
 	{
 		participantRepository.save(participant);
 	}
 
 	@Override
-	public void remove(Participant participant) 
+	public void remove(Participant participant)
 	{
 		participantRepository.remove(participant);
 	}
 
 	@Override
-	public List<Participant> findAll() 
+	public List<Participant> findAll()
 	{
 		return participantRepository.findAll();
 	}

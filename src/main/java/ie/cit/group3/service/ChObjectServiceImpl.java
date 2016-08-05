@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
  * @author John Murphy
- * Student Id: R00131347
- * 
- * This class implements the interface for ChObjectService.  
- * 
+ *
+ * This class implements the interface for ChObjectService.
+ *
  * This class passes directly through to the Repository layer.
- * 
+ *
  * Activities it must implement are:
  * 	get			Retrieve record(s) that match a given id
  *  save		Save a object/record to the repository
@@ -30,7 +29,7 @@ import org.springframework.stereotype.Service;
 //Identify this class as Service (Spring will detect it during @ComponentScan & create a bean of this type).
 @Service
 public class ChObjectServiceImpl implements ChObjectService {
-	
+
 	//instance variable that is updated via constructor DI
 	ChObjectRepository chObjectRepository;
 
@@ -40,27 +39,27 @@ public class ChObjectServiceImpl implements ChObjectService {
 	{
 		this.chObjectRepository = chObjectRepository;
 	}
-	
+
 	@Override
-	public ChObject get(String id) 
+	public ChObject get(String id)
 	{
 		return chObjectRepository.get(id);
 	}
 
 	@Override
-	public void save(ChObject chobject) 
+	public void save(ChObject chobject)
 	{
 		chObjectRepository.save(chobject);
 	}
 
 	@Override
-	public void remove(ChObject chobject) 
+	public void remove(ChObject chobject)
 	{
 		chObjectRepository.remove(chobject);
 	}
 
 	@Override
-	public List<ChObject> findAll() 
+	public List<ChObject> findAll()
 	{
 		return chObjectRepository.findAll();
 	}
