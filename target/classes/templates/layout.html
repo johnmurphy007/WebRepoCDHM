@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+
+<head th:fragment="htmlhead" lang="en">
+	
+	<!-- Include scripts to enable JQuery & Bootstrap on html pages -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"
+      th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/> -->
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+
+<script type="text/javascript"> 
+
+
+/* Author: John Murphy
+	Using Internationalisation in this form for text.
+*/
+
+/* Prevents JQuery code from running before the document is finished loading (could use $(function(){ }); too)
+	//show.bs.modal = This event fires immediately when the show instance method 
+	//is called. If caused by a click, the clicked element is available as the relatedTarget property of the event.
+	//[The on() method attaches one or more event handlers for the selected elements] */ 
+$(document).ready(function(){
+
+	//Following JQuery is used when a user Flags a Crowdsourced Description.
+	$("button1").each(function(i){
+		$(this).on("click", {x:i}, function(event){   //onclick, capture the row number (starting a 0) that click occured
+		var commentJMTest = event.data.x;  //extract the row number
+			 
+		$("#complaintModal").modal(true);  //display modal form 'complaintModal'
+			            
+		var button1 = $(event.relatedTarget);  // Button that triggered the modal
+		var recipient = button1.data("source"); // Extract info from data-* (data-source in this case) attributes
+	
+		var commentid = $("#CSid").val(); //
+	    var source = $("#CSsource").val();  //works 
+	    var commenttest = $("#CSid").text();
+			      
+			           
+	    $('#sourceX').val(source); //works - pulls info from main form and populates the id sourceX
+	    $('#idX').val(commentid);
+	    $('#objectidX').val(commentJMTest); //assign variable value to html modal form element
+	      var reason = $("#Xreport_reason").val();  //used to select the default item from drop down list.
+	        //alert(reason);
+	        if(reason==0){
+	        	$("#Xreport_reason").val(1); //setting the default value of selected items to  1
+	       	   }
+	        
+	    var titleData = button1.data('title'); // Extract value from data-* attributes
+	    //    alert('lll');
+	    $(this).find('.modal-title').text(titleData + ' Form');
+			         
+	   	var modal = $(this);
+	  	//finds class "modal-title" and .text() sets or returns the text content of selected elements		            		
+	   	modal.find('.modal-title').text('Report comment on ' + recipient); 
+	});
+	});        
+
+	//Following JQuery is used when a user Flags a Comment
+ $("button2").each(function(i){
+    	$(this).on("click", {x:i}, function(event){   //onclick, capture the row number (starting a 0) that click occured
+        var commentJMTest = event.data.x;  //extract the row number
+     
+        $("#complaintModal").modal(true);  //display modal form 'complaintModal'
+         
+        var source = $("#Csource").val();  //works 
+
+        $('#sourceX').val(source); //works - pulls info from main form!
+        $('#idX').val(commentJMTest);
+        $('#objectidX').val(commentJMTest); //assign variable value to html modal form element
+	      var reason = $("#Xreport_reason").val();
+	        //alert(reason);
+	        if(reason==0){
+	        	$("#Xreport_reason").val(1); //setting the default value of the drop down list to 1
+	       	   }
+	 });
+	});
+
+
+ 	//Used to select the row number from list of flagged comments
+	  $("a11").each(function(i){
+	    	$(this).on("click", {x:i}, function(event){   
+	    	       var commentJMTest = event.data.x;  //extract the row number
+	      var originalcommentflag = $("input:checkbox:checked").val();
+	      
+	      var url="/admin/";
+	     // alert(url);
+	      if(originalcommentflag=="deletecomment"){
+	    	url="/admin/flaggedcomments/reviewed/"+commentJMTest+"/yes"; //set the URL based on disposition of admin
+	    	  }else{
+	    	url="/admin/flaggedcomments/reviewed/"+commentJMTest+"/no";}
+	     location.href=url;  
+	     	});
+	    	}); 
+	
+ 	//Used to select the row number from list of flagged descriptions
+	  $("a22").each(function(i){
+	    	$(this).on("click", {x:i}, function(event){   
+	    	       var commentJMTest = event.data.x;  //extract the row number
+	      var originalcommentflag = $("input:checkbox:checked").val();
+	      
+	
+	      var url="/admin/";
+	      if(originalcommentflag=="deletecomment"){
+	    	url="/admin/flaggeddescriptions/reviewed/"+commentJMTest+"/yes"; 
+	    	  }else{
+	    	url="/admin/flaggeddescriptions/reviewed/"+commentJMTest+"/no";}
+	     location.href=url;  
+	     	});
+	    	}); 
+	  
+	//Not used as getting an issue with multiple / when entering a directory. Changed approach to using a form backing bean to capture directory as String.
+	  $("#importbutton").click(function(){          
+	       var directory=$("#importdirectory").val();    
+	       var url="/import/("+directory+")"; 
+	    location.href=url;  
+	});
+	  
+	//Following 4 JQuery 'functions' are used to populate a field in the form backing bean based on the user Search criteria.
+	  $("#collapse11").click(function(){
+		  //alert('hi');
+		     $('#searchsource').val('chobject');  //if user selected to search for items based on 'chobject', then field in id=searchsource will be updated.
+		  });
+	  
+	 $("#collapse22").click(function(){          
+	     $('#searchsource').val('participant');//if user selected to search for items based on 'participant', then field in id=searchsource will be updated.
+	  });
+	 $("#collapse33").click(function(){          
+		     $('#searchsource').val('role');//if user selected to search for items based on 'role', then field in id=searchsource will be updated.
+		  });
+	 $("#collapse44").click(function(){          
+	     $('#searchsource').val('crowdsource-gamification');//if user selected to search for items based on 'crowdsource-gamification', then field in id=searchsource will be updated.
+	  });
+});
+
+</script>
+      
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>  
+
+	<title th:text="${title}"></title>
+
+<style>
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 70%;
+	height: 300px; /* JM added to set the height of the image*/
+	margin: auto;
+}
+
+/* Used to set the image size used when displaying ChObject image to webpage. */
+.house-thumb>div>a>img {
+	height: auto;
+	width: auto;
+	max-width: 500px;
+	max-height:500px;
+	margin: auto;
+}
+
+/* Used to set the image size used when displaying ChObject image to webpage. */
+.search-thumb>.table-responsive>.table>img {
+	height: auto;
+	width: auto;
+	max-width: 100px;
+	max-height:100px;
+	margin: auto;
+}
+
+/* Set the padding on the Bootstrap Container-fluid */
+.container-fluid {
+    padding: 0 15px;
+}
+
+/* Using the following CSS to remove the horizontal bars that were appearing on webpages */
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+	<nav th:fragment="navbar" class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- "navbar-brand" used to highlights this text -->
+				<a class="navbar-brand" width="device-width"
+					th:href="#{home.url}+'/home'" th:text="#{home.Cooper}"></a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<div>
+					<ul class="nav navbar-nav">
+						<li><a th:href="#{home.url}+'/browse/'"
+							th:text="#{home.Browse}"></a></li>
+					</ul>
+
+					<!-- DISPLAY FOR ADMIN (REF: Chapter 15: http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html) -->
+					<div sec:authorize="hasRole('ADMIN')">
+						This content is only shown to administrators.
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><a><font color="white"><b>Welcome <span
+											sec:authentication="name"></span></b></font></a></li>
+							<li><a th:href="#{home.url}+'/homepage'"
+								th:text="#{home.homepage}">Go to Home</a></li>
+							<li><a th:href="#{home.url}+'/logout'"><span
+									th:text="#{home.logout}" class="glyphicon glyphicon-log-out"></span></a></li>
+						</ul>
+
+					</div>
+					<!-- DISPLAY FOR USERS (gives the option of having a different display for USERS): -->
+					<div sec:authorize="hasAnyRole('USER','TRUSTED')">
+						This content is only shown to users.
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><a><font color="white"><b>Welcome <span
+											sec:authentication="name"></span> <span class="badge"
+											th:text="${usergamepoints}"> 0</span></b></font></a></li>
+							<li><a th:href="#{home.url}+'/homepage'"
+								th:text="#{home.homepage}">Home Page</a></li>
+							<li><a th:href="#{home.url}+'/logout'"><span
+									th:text="#{home.logout}" class="glyphicon glyphicon-log-out"></span>
+							</a></li>
+						</ul>
+
+					</div>
+					<!-- DISPLAY FOR ANONYMOUS USERS: -->
+					<div sec:authorize="isAnonymous()">
+						This content is only shown to NOT LOGGED IN users
+						<ul class="nav navbar-nav navbar-right">
+							<li><a th:href="#{home.url}+'/newuser'"><span
+									class="glyphicon glyphicon-user" th:text="#{home.signup}"></span></a></li>
+							<li><a th:href="#{home.url}+'/login'"><span
+									class="glyphicon glyphicon-log-in"></span><span
+									th:text="#{home.Login}"></span></a></li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+</body>
+</html>
